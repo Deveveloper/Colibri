@@ -25,14 +25,14 @@ _M.get = function()
 
             local name = "_"..func.tableLen(projects)
             --Создание папки
-            filesfunc:createFolder("Orbi/"..name, directory)
+            filesfunc:createFolder("Colibri/"..name, directory)
             --Создание файла json с данными проекта
-            jsonfunc:save("Orbi/"..name.."/data.json", directory, {})
+            jsonfunc:save("Colibri/"..name.."/data.json", directory, {})
             --Создание изображения в папке проекта
             local file = io.open(fpath, "rb")
             local dimage = file:read("*a")
             io.close(file)
-            local file = io.open(system.pathForFile("Orbi/"..name.."/"..name..".png", system.DocumentsDirectory), "wb")
+            local file = io.open(system.pathForFile("Colibri/"..name.."/"..name..".png", system.DocumentsDirectory), "wb")
             if (dimage) and (file) then
                 file:write(dimage)
                 io.close(file)
@@ -43,10 +43,10 @@ _M.get = function()
                 --Заполнение данных проекта
                 local date = os.date("*t")
                 local date = date.day..":"..date.month..":"..date.year
-                projects[name] = {path = "Orbi/"..name.."/"..name..".png", id = func.tableLen(projects), date = date}
-                jsonfunc:save("Orbi/projects.json", directory, projects)
+                projects[name] = {path = "Colibri/"..name.."/"..name..".png", id = func.tableLen(projects), date = date}
+                jsonfunc:save("Colibri/projects.json", directory, projects)
 
-                local name_ = fpath:gsub("Orbi/", "")
+                local name_ = fpath:gsub("Colibri/", "")
                 name_ = name_:gsub(system.pathForFile("", directory), "")
                 name_ = name_:gsub("/"..name, "")
                 if platform == "Android" then os.remove(system.pathForFile(name_, system.DocumentsDirectory)) end

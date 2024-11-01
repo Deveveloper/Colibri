@@ -55,17 +55,17 @@ _M.create = function()
         return true
     
     end)
-
+--ПОСТЕР
     local upposter
     --Получение данных с сервера
-    network.request("https://firebasestorage.googleapis.com/v0/b/orbi-c2g.appspot.com/o/upposter.png", "GET", 
+    network.request("https://tweshot.ru/upposter.png", "GET", 
     function(event)
 
         if event.isError == false then
 
-            local token = json.decode(event.response).downloadTokens
+            --local token = json.decode(event.response).downloadTokens
 
-            network.request("https://firebasestorage.googleapis.com/v0/b/orbi-c2g.appspot.com/o/upposter.png?alt=media&token="..token, "GET", 
+            network.request("https://tweshot.ru/upposter.png", "GET", 
             function(event)
 
                 backpermission = true
@@ -205,7 +205,7 @@ _M.create = function()
                                 network.request(firebase.token.."feed/messages.json", "GET", 
                                 function(event)
 
-                                    local userdata = jsonfunc:read("Orbi/userdata.json", directory)
+                                    local userdata = jsonfunc:read("Colibri/userdata.json", directory)
                                     local messages = json.decode(event.response)
 
                                     local params = {}

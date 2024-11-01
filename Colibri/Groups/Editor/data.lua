@@ -60,7 +60,7 @@ _M.get = function()
                         print(system.pathForFile("_"..tostring(_P.id)..".png"))
                         local dimage = file:read("*a")
                         io.close(file)
-                        local file = io.open(system.pathForFile("Orbi/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
+                        local file = io.open(system.pathForFile("Colibri/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
                         if (dimage) and (file) then
                             file:write(dimage)
                             io.close(file)
@@ -94,7 +94,7 @@ _M.get = function()
         local file = io.open(system.pathForFile("_"..tostring(_P.id)..".png", directory), "rb")
         local dimage = file:read("*a")
         io.close(file)
-        local file = io.open(system.pathForFile("Orbi/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
+        local file = io.open(system.pathForFile("Colibri/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
         if (dimage) and (file) then
             file:write(dimage)
             io.close(file)
@@ -107,10 +107,10 @@ _M.get = function()
         end, 1)
 
         --Сохранение на устройство
-        local name = _P.path:gsub("Orbi/", "")
+        local name = _P.path:gsub("Colibri/", "")
         name = name:gsub("/_"..tostring(_P.id), "")
 
-        local file = io.open(system.pathForFile("Orbi/_"..tostring(_P.id).."/_"..tostring(_P.id)..".png", directory), "rb")
+        local file = io.open(system.pathForFile("Colibri/_"..tostring(_P.id).."/_"..tostring(_P.id)..".png", directory), "rb")
         local dimage = file:read("*a")
         io.close(file)
 

@@ -53,7 +53,7 @@ _M.create = function()
         }
     )
 
-    local projects = jsonfunc:read("Orbi/projects.json", directory)
+    local projects = jsonfunc:read("Colibri/projects.json", directory)
     local size = dw/1.05
     local y = size/2 + 5
 

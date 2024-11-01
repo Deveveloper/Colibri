@@ -22,7 +22,7 @@ pallete = {
 
 --Firebase
 firebase = {
-    token = "https://orbi-dc2d1-default-rtdb.firebaseio.com/"
+    token = "https://colibri-dc56e-default-rtdb.firebaseio.com/"
 }
 
 display.setDefault("background", pallete.background[1], pallete.background[2], pallete.background[3])
@@ -31,36 +31,36 @@ offset = 0
 if platform == "Android" then offset = display.statusBarHeight end
 
 --Проверка на сущестование папки с данными приложения
-local attributes = lfs.attributes(system.pathForFile("Orbi", directory))
+local attributes = lfs.attributes(system.pathForFile("Colibri", directory))
 if (attributes) and attributes.mode == "directory" then
     
 else
-    filesfunc:createFolder("Orbi", directory)
+    filesfunc:createFolder("Colibri", directory)
 end
 
 --Проверка на наличие файла с данными пользователя
 local userdata
 
-local file = io.open(system.pathForFile("Orbi/userdata.json", directory), "r")
+local file = io.open(system.pathForFile("Colibri/userdata.json", directory), "r")
 
 if (file) then
-    userdata = jsonfunc:read("Orbi/userdata.json", directory)
+    userdata = jsonfunc:read("Colibri/userdata.json", directory)
     io.close(file)
 else
-    jsonfunc:save("Orbi/userdata.json", directory, 
+    jsonfunc:save("Colibri/userdata.json", directory, 
     {
         authenticated = false
     })
-    userdata = jsonfunc:read("Orbi/userdata.json", directory)
+    userdata = jsonfunc:read("Colibri/userdata.json", directory)
 end
 
 --Отправление данных на сервер
---[[network.request("https://firebasestorage.googleapis.com/v0/b/orbi-c2g.appspot.com/o/wifi.png", "GET", 
+--[[network.request("https://firebasestorage.googleapis.com/v0/b/Colibri-c2g.appspot.com/o/wifi.png", "GET", 
 function(event)
 
     local token = json.decode(event.response).downloadTokens
 
-    network.request("https://firebasestorage.googleapis.com/v0/b/orbi-c2g.appspot.com/o/wifi.png?alt=media&token="..token, "GET", 
+    network.request("https://firebasestorage.googleapis.com/v0/b/Colibri-c2g.appspot.com/o/wifi.png?alt=media&token="..token, "GET", 
     function(event)
 
         local file = io.open(system.pathForFile("_1.png", directory), "wb")

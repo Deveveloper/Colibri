@@ -100,7 +100,7 @@ _M.create = function(__M, _P, data)
                     local file = io.open(system.pathForFile("_"..tostring(_P.id)..".png", directory), "rb")
                     local dimage = file:read("*a")
                     io.close(file)
-                    local file = io.open(system.pathForFile("Orbi/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
+                    local file = io.open(system.pathForFile("Colibri/".."_"..tostring(_P.id).."/".."_"..tostring(_P.id)..".png", directory), "wb")
                     if (dimage) and (file) then
                         file:write(dimage)
                         io.close(file)

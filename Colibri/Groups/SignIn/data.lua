@@ -4,7 +4,7 @@ _M.get = function()
 
     local data = {}
 
-    data["signupclick"] = function(__M) 
+    data["signinclick"] = function(__M) 
     
         local button_
         return function(event)
@@ -36,42 +36,23 @@ _M.get = function()
 
                         if event.isError == false then
 
-                            if tostring(event.response) == "null" and userdata.password ~= "" and userdata.username ~= "" and utf8.len(userdata.username) < 20 then
-
-                                --Отправление данных на сервер
-                                local params = {}
-                                params.body = json.encode(userdata)
-                                network.request(firebase.token.."users/"..userdata.username..".json", "PUT", function(event) end, params)
+                            --Проверка правильности пароля аккаунта
+                            local currentpassword = json.decode(event.response).password
+                            if userdata.password == currentpassword and userdata.username ~= "" and userdata.password ~= "" then
 
                                 --Сохранение данных о аутентификации
-                                local userdata_ = jsonfunc:read("Orbi/userdata.json", directory)
+                                local userdata_ = jsonfunc:read("Colibri/userdata.json", directory)
                                 userdata_.authenticated = true
-                                userdata_.userdata = userdata
+                                userdata_.userdata = json.decode(event.response)
 
-                                jsonfunc:save("Orbi/userdata.json", directory, userdata_)
+                                jsonfunc:save("Colibri/userdata.json", directory, userdata_)
 
                                 app:clearAllGroups()
                                 _Menu.create()
 
                             else
 
-                                if tostring(event.response) ~= "null" then
-
-                                    native.showAlert("Ошибка", "Такое имя пользователя уже занято!", {"Ок"}, nil)
-
-                                elseif userdata.username == "" then
-
-                                    native.showAlert("Ошибка", "Введите имя пользователя", {"Ок"}, nil)
-
-                                elseif userdata.password == "" then
-
-                                    native.showAlert("Ошибка", "Введите пароль", {"Ок"}, nil)
-
-                                elseif utf8.len(userdata.username) > 20 then
-
-                                    native.showAlert("Ошибка", "Слишком длинное имя пользователя", {"Ок"}, nil)
-
-                                end
+                                native.showAlert("Ошибка", "Неверные имя пользователя или пароль", {"Ок"}, nil)
 
                             end
 
@@ -80,7 +61,7 @@ _M.get = function()
                             native.showAlert("Нет подключения к интернету", "Проверьте подключение", {"Ок"}, nil)
 
                         end
-                    
+
                     end)
 
                 end, 1)

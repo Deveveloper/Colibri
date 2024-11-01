@@ -9,21 +9,21 @@ _M.create = function()
 
     local projects
     --Проверка на сущестование файла с настройками проектов
-    local file = io.open(system.pathForFile("Orbi/projects.json", directory), "r")
+    local file = io.open(system.pathForFile("Colibri/projects.json", directory), "r")
 
     if (file) then
-        projects = jsonfunc:read("Orbi/projects.json", directory)
+        projects = jsonfunc:read("Colibri/projects.json", directory)
         io.close(file)
     else
-        jsonfunc:save("Orbi/projects.json", directory, {})
-        projects = jsonfunc:read("Orbi/projects.json", directory)
+        jsonfunc:save("Colibri/projects.json", directory, {})
+        projects = jsonfunc:read("Colibri/projects.json", directory)
     end
 
     local uppanel = display.newRoundedRect(cx, 0, dw, 150, 0)
     uppanel.y = originY + uppanel.height/2 - 35/2
     uppanel:setFillColor(pallete.background_[1], pallete.background_[2], pallete.background_[3])
 
-    local title = display.newText("Orbi.", 0, 0, "Fonts/Ubuntu/Ubuntu-Light", 45)
+    local title = display.newText("Colibri.", 0, 0, "Fonts/Ubuntu/Ubuntu-Light", 45)
     title.x, title.y = title.width/2 + 25, uppanel.y + uppanel.height/4 - title.height/2
 
     local version = display.newText("ver 1.0.0", 0, 0, "Fonts/Ubuntu/Ubuntu-Light", 30)
